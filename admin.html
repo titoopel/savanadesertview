@@ -1,264 +1,125 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0b0b0b" />
-  <title>Savana Admin</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080808">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Savana Admin · Welcome Image</title>
   <style>
-    :root{
-      --bg:#080808; --panel:#111; --panel2:#171717; --gold:#d6a84b;
-      --gold2:#f1d27a; --text:#fff; --muted:#aaa; --danger:#ff6b6b;
-      --ok:#5bd38c; --line:rgba(214,168,75,.28);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-    body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-    button,input,textarea,select{font:inherit}
-    .wrap{max-width:720px;margin:0 auto;padding:20px}
-    .brand{padding:18px 0 24px;text-align:center}
-    .brand h1{margin:0;color:var(--gold2);font-size:28px;letter-spacing:.08em}
-    .brand p{margin:7px 0 0;color:var(--muted);font-size:14px}
-    .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:16px;box-shadow:0 12px 32px rgba(0,0,0,.25)}
-    .login{max-width:430px;margin:10vh auto 0}
-    h2{margin:0 0 14px;font-size:20px}
-    label{display:block;color:#ddd;margin:14px 0 7px;font-size:14px}
-    input,textarea,select{
-      width:100%;background:var(--panel2);color:#fff;border:1px solid #333;
-      border-radius:12px;padding:13px 14px;outline:none
-    }
-    input:focus,textarea:focus,select:focus{border-color:var(--gold)}
-    textarea{min-height:110px;resize:vertical}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .btn{
-      width:100%;border:0;border-radius:12px;padding:14px 16px;font-weight:700;
-      cursor:pointer;margin-top:14px
-    }
-    .primary{background:var(--gold);color:#111}
-    .secondary{background:#222;color:#fff;border:1px solid #3b3b3b}
-    .danger{background:#2a1111;color:#ffb0b0;border:1px solid #6e2525}
-    .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
-    .topbar .btn{width:auto;margin:0;padding:10px 14px}
-    .status{font-size:13px;color:var(--muted);margin-top:10px}
-    .ok{color:var(--ok)} .bad{color:var(--danger)}
-    .hidden{display:none!important}
-    .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:5px 9px;color:var(--gold2);font-size:12px}
-    .note{font-size:13px;line-height:1.5;color:#bbb}
-    .preview{background:#0d0d0d;border:1px dashed #444;border-radius:14px;padding:16px;margin-top:14px}
-    .preview strong{color:var(--gold2)}
-    @media(max-width:560px){.row{grid-template-columns:1fr}.wrap{padding:14px}.brand h1{font-size:24px}}
+    :root{--bg:#080808;--panel:#111;--panel2:#171717;--gold:#d6a84b;--gold2:#f1d27a;--text:#fff;--muted:#aaa;--danger:#ff7b7b;--ok:#65d992;--line:rgba(214,168,75,.30)}
+    *{box-sizing:border-box} html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+    body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)} button,input{font:inherit}
+    .wrap{max-width:680px;margin:0 auto;padding:18px}.brand{text-align:center;padding:28px 0 22px}.brand h1{margin:0;color:var(--gold2);letter-spacing:.11em;font-size:28px}.brand p{margin:8px 0 0;color:var(--muted);font-size:14px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:16px;box-shadow:0 12px 34px rgba(0,0,0,.28)}
+    .login{max-width:430px;margin:9vh auto 0} h2{margin:0 0 14px;font-size:21px}
+    input[type=password]{width:100%;background:var(--panel2);color:#fff;border:1px solid #333;border-radius:13px;padding:15px;outline:none;font-size:19px;letter-spacing:.18em}
+    input[type=password]:focus{border-color:var(--gold)}
+    .btn{width:100%;border:0;border-radius:13px;padding:15px;font-weight:750;cursor:pointer;margin-top:12px}.primary{background:var(--gold);color:#111}.secondary{background:#222;color:#fff;border:1px solid #3c3c3c}.btn:disabled{opacity:.45;cursor:not-allowed}
+    .hidden{display:none!important}.status{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.45}.ok{color:var(--ok)}.bad{color:var(--danger)}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.topbar .btn{width:auto;margin:0;padding:10px 14px}
+    .path{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--gold2);background:#15120b;border:1px solid var(--line);padding:9px 11px;border-radius:10px;overflow-wrap:anywhere}
+    .imagebox{border:1px solid #343434;border-radius:16px;overflow:hidden;background:#000;display:flex;align-items:center;justify-content:center;min-height:250px}.imagebox img{display:block;width:100%;height:auto;max-height:62vh;object-fit:contain}
+    .filepick{position:relative;margin-top:12px}.filepick input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}.filepick .fake{border:1px dashed rgba(214,168,75,.65);border-radius:14px;padding:16px;text-align:center;color:var(--gold2);font-weight:700;background:#15120b}
+    .meta{font-size:13px;color:#aaa;margin-top:9px}.note{font-size:13px;line-height:1.5;color:#bbb}.successbox{border:1px solid rgba(101,217,146,.35);background:rgba(101,217,146,.08);border-radius:14px;padding:13px;margin-top:13px;color:#c9f7d8;font-size:14px}
+    @media(max-width:560px){.wrap{padding:14px}.brand h1{font-size:24px}}
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <section id="loginView" class="login">
-      <div class="brand">
-        <h1>SAVANA ADMIN</h1>
-        <p>Private management panel</p>
+<main class="wrap">
+  <section id="loginView" class="login">
+    <div class="brand"><h1>SAVANA ADMIN</h1><p>Welcome image manager</p></div>
+    <div class="card">
+      <h2>Enter Admin PIN</h2>
+      <input id="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="••••••">
+      <button id="unlockBtn" class="btn primary">Unlock</button>
+      <div id="loginStatus" class="status"></div>
+    </div>
+  </section>
+
+  <section id="adminView" class="hidden">
+    <div class="brand"><h1>SAVANA ADMIN</h1><p>Welcome image manager</p></div>
+    <div class="topbar">
+      <div><strong>Current welcome</strong><div class="status">Savana Desert View Apartment</div></div>
+      <button id="lockBtn" class="btn secondary">Lock</button>
+    </div>
+
+    <div class="card">
+      <h2>Current image</h2>
+      <div class="path">images/general/welcome.PNG</div>
+      <div class="imagebox" style="margin-top:14px"><img id="currentImage" alt="Current welcome image"></div>
+      <button id="refreshBtn" class="btn secondary">Refresh current image</button>
+    </div>
+
+    <div class="card">
+      <h2>Replace welcome image</h2>
+      <p class="note">Choose the new personalized welcome image. The file must be PNG. Its original filename does not matter; it will always replace <strong>welcome.PNG</strong>.</p>
+      <div class="filepick"><div class="fake">Choose PNG image</div><input id="fileInput" type="file" accept="image/png,.png"></div>
+      <div id="fileMeta" class="meta">No image selected.</div>
+      <div id="previewWrap" class="hidden">
+        <div class="status" style="margin-bottom:8px">Preview</div>
+        <div class="imagebox"><img id="previewImage" alt="New welcome preview"></div>
       </div>
-      <div class="card">
-        <h2>Enter Admin PIN</h2>
-        <input id="pin" type="password" inputmode="numeric" autocomplete="one-time-code"
-               maxlength="6" placeholder="••••" />
-        <button class="btn primary" id="loginBtn">Unlock panel</button>
-        <div id="loginStatus" class="status"></div>
-      </div>
-    </section>
-
-    <section id="adminView" class="hidden">
-      <div class="brand">
-        <h1>SAVANA ADMIN</h1>
-        <p><span class="pill">TEST MODE</span></p>
-      </div>
-
-      <div class="topbar">
-        <div>
-          <strong>Guest configuration</strong>
-          <div class="status">Savana Desert View Apartment</div>
-        </div>
-        <button class="btn secondary" id="logoutBtn">Lock</button>
-      </div>
-
-      <div class="card">
-        <h2>Guest</h2>
-        <div class="row">
-          <div>
-            <label for="guestName">Guest / group name</label>
-            <input id="guestName" placeholder="e.g. Murisa & Family" />
-          </div>
-          <div>
-            <label for="language">Default language</label>
-            <select id="language">
-              <option value="en">English</option>
-              <option value="es">Español</option>
-              <option value="pt">Português</option>
-              <option value="fr">Français</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label for="checkIn">Check-in</label>
-            <input id="checkIn" type="date" />
-          </div>
-          <div>
-            <label for="checkOut">Check-out</label>
-            <input id="checkOut" type="date" />
-          </div>
-        </div>
-
-        <label for="welcome">Welcome message</label>
-        <textarea id="welcome" placeholder="Welcome to Madeira..."></textarea>
-      </div>
-
-      <div class="card">
-        <h2>Contact & display</h2>
-        <label for="contact">Host contact</label>
-        <input id="contact" placeholder="+44 ..." />
-
-        <label for="screenMessage">Short screen message</label>
-        <input id="screenMessage" placeholder="Touch to start" />
-
-        <div class="preview">
-          <div class="status">Preview</div>
-          <p><strong id="pvName">Guest</strong></p>
-          <p id="pvMsg">Welcome message will appear here.</p>
-          <p class="status" id="pvDates"></p>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2>Test actions</h2>
-        <button class="btn primary" id="saveLocalBtn">Save test on this iPhone</button>
-        <button class="btn secondary" id="downloadBtn">Export guest.json</button>
-        <button class="btn danger" id="resetBtn">Reset test data</button>
-        <div id="saveStatus" class="status"></div>
-        <p class="note">
-          This first version is deliberately separate from the public website.
-          “Save test” stores data only in this browser. “Export guest.json” creates
-          the configuration file that can later be committed to GitHub.
-        </p>
-      </div>
-    </section>
-  </main>
+      <button id="publishBtn" class="btn primary" disabled>Publish new welcome image</button>
+      <div id="publishStatus" class="status"></div>
+      <div id="successBox" class="successbox hidden">Published successfully. GitHub Pages may need a short moment before the new image appears on the apartment screen.</div>
+    </div>
+  </section>
+</main>
 
 <script>
 (() => {
-  // TEST ONLY. Client-side PIN is not strong authentication on a static site.
-  const TEST_PIN = "2580";
-  const STORAGE_KEY = "savana_admin_guest_v1";
-  const SESSION_KEY = "savana_admin_unlocked";
-
+  const WORKER = "https://savana-welcome-admin.58gdb7rybv.workers.dev";
+  const CURRENT_IMAGE = "images/general/welcome.PNG";
+  const MAX_BYTES = 15 * 1024 * 1024;
   const $ = id => document.getElementById(id);
-  const loginView = $("loginView");
-  const adminView = $("adminView");
+  let activePin = "", selectedFile = null, previewUrl = null;
 
-  const fields = ["guestName","language","checkIn","checkOut","welcome","contact","screenMessage"];
+  function showAdmin(on){$("loginView").classList.toggle("hidden",on);$("adminView").classList.toggle("hidden",!on)}
+  function setStatus(el,text,type=""){el.textContent=text;el.className="status"+(type?" "+type:"")}
+  function refreshCurrent(){$("currentImage").src=CURRENT_IMAGE+"?v="+Date.now()}
 
-  function setUnlocked(on){
-    sessionStorage.setItem(SESSION_KEY, on ? "1" : "0");
-    loginView.classList.toggle("hidden", on);
-    adminView.classList.toggle("hidden", !on);
+  async function unlock(){
+    const pin=$("pin").value.trim();
+    if(!pin)return setStatus($("loginStatus"),"Enter your PIN.","bad");
+    $("unlockBtn").disabled=true;setStatus($("loginStatus"),"Checking…");
+    try{
+      const r=await fetch(WORKER+"/auth",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({pin})});
+      const data=await r.json().catch(()=>({}));
+      if(!r.ok||!data.ok)throw new Error(data.error||"Could not authenticate");
+      activePin=pin;$("pin").value="";setStatus($("loginStatus"),"");showAdmin(true);refreshCurrent();
+    }catch(err){setStatus($("loginStatus"),err.message||"Authentication failed","bad")}
+    finally{$("unlockBtn").disabled=false}
   }
 
-  function dataFromForm(){
-    return {
-      guestName: $("guestName").value.trim(),
-      language: $("language").value,
-      checkIn: $("checkIn").value,
-      checkOut: $("checkOut").value,
-      welcome: $("welcome").value.trim(),
-      contact: $("contact").value.trim(),
-      screenMessage: $("screenMessage").value.trim(),
-      updatedAt: new Date().toISOString()
-    };
-  }
+  $("unlockBtn").addEventListener("click",unlock);
+  $("pin").addEventListener("keydown",e=>{if(e.key==="Enter")unlock()});
+  $("lockBtn").addEventListener("click",()=>{activePin="";selectedFile=null;if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl=null;$("fileInput").value="";$("previewWrap").classList.add("hidden");$("publishBtn").disabled=true;$("successBox").classList.add("hidden");$("fileMeta").textContent="No image selected.";setStatus($("publishStatus"),"");showAdmin(false)});
+  $("refreshBtn").addEventListener("click",refreshCurrent);
 
-  function fillForm(d = {}){
-    fields.forEach(k => { if (d[k] !== undefined) $(k).value = d[k]; });
-    updatePreview();
-  }
-
-  function updatePreview(){
-    const d = dataFromForm();
-    $("pvName").textContent = d.guestName || "Guest";
-    $("pvMsg").textContent = d.welcome || "Welcome message will appear here.";
-    $("pvDates").textContent =
-      (d.checkIn || d.checkOut) ? `${d.checkIn || "—"} → ${d.checkOut || "—"}` : "";
-  }
-
-  $("loginBtn").addEventListener("click", () => {
-    if ($("pin").value === TEST_PIN){
-      $("loginStatus").textContent = "";
-      setUnlocked(true);
-      try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-        fillForm(saved);
-      } catch { fillForm({}); }
-    } else {
-      $("loginStatus").textContent = "Incorrect PIN";
-      $("loginStatus").className = "status bad";
-      $("pin").value = "";
-    }
+  $("fileInput").addEventListener("change",()=>{
+    $("successBox").classList.add("hidden");setStatus($("publishStatus"),"");
+    const file=$("fileInput").files&&$("fileInput").files[0];
+    if(!file){selectedFile=null;$("publishBtn").disabled=true;$("previewWrap").classList.add("hidden");$("fileMeta").textContent="No image selected.";return}
+    if(file.type!=="image/png"&&!file.name.toLowerCase().endsWith(".png")){selectedFile=null;$("publishBtn").disabled=true;$("previewWrap").classList.add("hidden");return setStatus($("publishStatus"),"Please choose a PNG image.","bad")}
+    if(file.size>MAX_BYTES){selectedFile=null;$("publishBtn").disabled=true;$("previewWrap").classList.add("hidden");return setStatus($("publishStatus"),"PNG must be smaller than 15 MB.","bad")}
+    selectedFile=file;if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl=URL.createObjectURL(file);$("previewImage").src=previewUrl;$("previewWrap").classList.remove("hidden");$("publishBtn").disabled=false;$("fileMeta").textContent=`${file.name} · ${(file.size/1024/1024).toFixed(2)} MB`;
   });
 
-  $("pin").addEventListener("keydown", e => {
-    if (e.key === "Enter") $("loginBtn").click();
+  $("publishBtn").addEventListener("click",async()=>{
+    if(!activePin||!selectedFile)return;
+    $("publishBtn").disabled=true;$("successBox").classList.add("hidden");setStatus($("publishStatus"),"Publishing to GitHub…");
+    const form=new FormData();form.append("pin",activePin);form.append("image",selectedFile,selectedFile.name);
+    try{
+      const r=await fetch(WORKER+"/publish",{method:"POST",body:form});
+      const data=await r.json().catch(()=>({}));
+      if(!r.ok||!data.ok)throw new Error(data.error||"Publish failed");
+      setStatus($("publishStatus"),"Published successfully ✓","ok");$("successBox").classList.remove("hidden");
+      setTimeout(refreshCurrent,2500);setTimeout(refreshCurrent,12000);
+    }catch(err){setStatus($("publishStatus"),err.message||"Publish failed","bad");$("publishBtn").disabled=false}
   });
 
-  $("logoutBtn").addEventListener("click", () => {
-    sessionStorage.removeItem(SESSION_KEY);
-    $("pin").value = "";
-    setUnlocked(false);
-  });
-
-  fields.forEach(k => $(k).addEventListener("input", updatePreview));
-
-  $("saveLocalBtn").addEventListener("click", () => {
-    const d = dataFromForm();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
-    $("saveStatus").textContent = "Saved on this device ✓";
-    $("saveStatus").className = "status ok";
-  });
-
-  $("downloadBtn").addEventListener("click", () => {
-    const d = dataFromForm();
-    const blob = new Blob([JSON.stringify(d, null, 2)], {type:"application/json"});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "guest.json";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-    $("saveStatus").textContent = "guest.json exported ✓";
-    $("saveStatus").className = "status ok";
-  });
-
-  $("resetBtn").addEventListener("click", () => {
-    localStorage.removeItem(STORAGE_KEY);
-    fillForm({
-      guestName:"",
-      language:"en",
-      checkIn:"",
-      checkOut:"",
-      welcome:"",
-      contact:"",
-      screenMessage:"Touch to start"
-    });
-    $("saveStatus").textContent = "Test data reset";
-    $("saveStatus").className = "status";
-  });
-
-  if (sessionStorage.getItem(SESSION_KEY) === "1") {
-    setUnlocked(true);
-    try { fillForm(JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}")); }
-    catch { fillForm({}); }
-  } else {
-    setUnlocked(false);
-  }
+  showAdmin(false);
 })();
 </script>
 </body>
