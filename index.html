@@ -39,7 +39,7 @@
             overflow:hidden;
             position:relative;
 
-            background:#000 url('images/general/fondo.png') no-repeat center top;
+            background:#000 url('images/general/fondo.PNG') no-repeat center top;
             background-size:cover;
 
             color:#fff;
@@ -363,36 +363,24 @@
         .nav-top-bar{
             position:relative;
             width:100%;
-            height:77px;
+            min-height:77px;
             display:flex;
-            justify-content:space-between;
+            justify-content:flex-start;
             align-items:center;
+            gap:18px;
             flex-shrink:0;
         }
 
-        .back-btn,
-        .nav-arrow{
+        .back-btn{
+            flex:0 0 auto;
             background:rgba(255,255,255,.08);
             border:1px solid #d6a84b;
             color:#ffd76a;
             border-radius:12px;
             cursor:pointer;
             -webkit-tap-highlight-color:transparent;
-        }
-
-        .back-btn{
             font-size:clamp(1.25rem,3.8vw,1.8rem);
             padding:.65rem 1.25rem;
-        }
-
-        .nav-arrows{
-            display:flex;
-            gap:.8rem;
-        }
-
-        .nav-arrow{
-            font-size:clamp(1.45rem,4.1vw,2.05rem);
-            padding:.6rem 1.25rem;
         }
 
         .slideshow-wrap{
@@ -404,6 +392,15 @@
             justify-content:center;
             position:relative;
             overflow:hidden;
+        }
+
+        .slideshow-wrap{
+            touch-action:pan-y;
+            cursor:grab;
+        }
+
+        .slideshow-wrap.swiping{
+            cursor:grabbing;
         }
 
         .slide{
@@ -419,6 +416,24 @@
             display:block;
         }
 
+        .slide.slide-next{
+            animation:carouselSlideNext .24s ease-out;
+        }
+
+        .slide.slide-prev{
+            animation:carouselSlidePrev .24s ease-out;
+        }
+
+        @keyframes carouselSlideNext{
+            from{opacity:.35;transform:translateX(12%);}
+            to{opacity:1;transform:translateX(0);}
+        }
+
+        @keyframes carouselSlidePrev{
+            from{opacity:.35;transform:translateX(-12%);}
+            to{opacity:1;transform:translateX(0);}
+        }
+
         .empty-section{
             color:#d6a84b;
             font-family:"Playfair Display",serif;
@@ -429,11 +444,35 @@
         }
 
         .dots{
-            display:none !important;
-            visibility:hidden !important;
-            height:0 !important;
-            margin:0 !important;
-            padding:0 !important;
+            flex:1 1 auto;
+            min-width:0;
+            display:flex;
+            align-items:center;
+            justify-content:flex-start;
+            flex-wrap:wrap;
+            gap:9px;
+            margin:0;
+            padding:4px 0;
+        }
+
+        .dot{
+            width:12px;
+            height:12px;
+            flex:0 0 12px;
+            padding:0;
+            border:1px solid rgba(214,168,75,.9);
+            border-radius:50%;
+            background:rgba(255,255,255,.18);
+            box-shadow:0 1px 4px rgba(0,0,0,.55);
+            cursor:pointer;
+            -webkit-tap-highlight-color:transparent;
+            transition:transform .16s ease,background .16s ease,box-shadow .16s ease;
+        }
+
+        .dot.active{
+            background:#D6A84B;
+            transform:scale(1.22);
+            box-shadow:0 0 9px rgba(214,168,75,.58);
         }
 
 
@@ -577,7 +616,7 @@
                 overflow-x:hidden;
                 overflow-y:auto;
                 background-color:#020811;
-                background-image:url('images/general/fondo.png');
+                background-image:url('images/general/fondo.PNG');
                 background-repeat:no-repeat;
                 background-position:center top;
                 background-size:100% auto;
@@ -750,19 +789,15 @@
 
             .nav-top-bar{
                 height:58px;
+                min-height:58px;
+                gap:10px;
             }
 
             .back-btn{
                 font-size:1rem;
                 padding:.52rem .85rem;
             }
-
-            .nav-arrow{
-                font-size:1.3rem;
-                padding:.48rem .9rem;
-            }
-
-            .slide{
+.slide{
                 width:100%;
                 height:100%;
                 object-fit:contain;
@@ -812,7 +847,7 @@
             body{
                 position:relative;
                 background-color:#020811;
-                background-image:url('images/general/fondo.png');
+                background-image:url('images/general/fondo.PNG');
                 background-repeat:no-repeat;
                 background-position:center top;
                 background-size:100% auto;
@@ -1009,19 +1044,26 @@
 
             .nav-top-bar{
                 height:54px;
+                min-height:54px;
+                gap:10px;
+            }
+
+            .dots{
+                gap:5px;
+                padding:2px 0;
+            }
+
+            .dot{
+                width:8px;
+                height:8px;
+                flex-basis:8px;
             }
 
             .back-btn{
                 font-size:.94rem;
                 padding:.46rem .74rem;
             }
-
-            .nav-arrow{
-                font-size:1.2rem;
-                padding:.43rem .78rem;
-            }
-
-            .slideshow-wrap{
+.slideshow-wrap{
                 flex:1;
                 min-height:0;
                 overflow:hidden;
@@ -1229,61 +1271,41 @@
 <div class="content-view" id="places">
     <div class="nav-top-bar">
         <button class="back-btn" onclick="goHome()" data-i18n="back">← Back</button>
-        <div class="nav-arrows">
-            <button class="nav-arrow" onclick="prevSlide('places')">‹</button>
-            <button class="nav-arrow" onclick="nextSlide('places')">›</button>
-        </div>
+        <div class="dots" id="places-dots" aria-label="Slide position"></div>
     </div>
     <div class="slideshow-wrap" id="places-slides"></div>
-    <div class="dots" id="places-dots"></div>
 </div>
 
 <div class="content-view" id="restaurants">
     <div class="nav-top-bar">
         <button class="back-btn" onclick="goHome()" data-i18n="back">← Back</button>
-        <div class="nav-arrows">
-            <button class="nav-arrow" onclick="prevSlide('restaurants')">‹</button>
-            <button class="nav-arrow" onclick="nextSlide('restaurants')">›</button>
-        </div>
+        <div class="dots" id="restaurants-dots" aria-label="Slide position"></div>
     </div>
     <div class="slideshow-wrap" id="restaurants-slides"></div>
-    <div class="dots" id="restaurants-dots"></div>
 </div>
 
 <div class="content-view" id="guide">
     <div class="nav-top-bar">
         <button class="back-btn" onclick="goHome()" data-i18n="back">← Back</button>
-        <div class="nav-arrows">
-            <button class="nav-arrow" onclick="prevSlide('guide')">‹</button>
-            <button class="nav-arrow" onclick="nextSlide('guide')">›</button>
-        </div>
+        <div class="dots" id="guide-dots" aria-label="Slide position"></div>
     </div>
     <div class="slideshow-wrap" id="guide-slides"></div>
-    <div class="dots" id="guide-dots"></div>
 </div>
 
 <div class="content-view" id="beaches">
     <div class="nav-top-bar">
         <button class="back-btn" onclick="goHome()" data-i18n="back">← Back</button>
-        <div class="nav-arrows">
-            <button class="nav-arrow" onclick="prevSlide('beaches')">‹</button>
-            <button class="nav-arrow" onclick="nextSlide('beaches')">›</button>
-        </div>
+        <div class="dots" id="beaches-dots" aria-label="Slide position"></div>
     </div>
     <div class="slideshow-wrap" id="beaches-slides"></div>
-    <div class="dots" id="beaches-dots"></div>
 </div>
 
 <div class="content-view" id="levadas">
     <div class="nav-top-bar">
         <button class="back-btn" onclick="goHome()" data-i18n="back">← Back</button>
-        <div class="nav-arrows">
-            <button class="nav-arrow" onclick="prevSlide('levadas')">‹</button>
-            <button class="nav-arrow" onclick="nextSlide('levadas')">›</button>
-        </div>
+        <div class="dots" id="levadas-dots" aria-label="Slide position"></div>
     </div>
     <div class="slideshow-wrap" id="levadas-slides"></div>
-    <div class="dots" id="levadas-dots"></div>
 </div>
 
 
@@ -1677,19 +1699,54 @@ function buildCarousel(id){
         };
 
         wrap.appendChild(img);
+
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'dot';
+        dot.setAttribute('aria-label', `Go to slide ${i}`);
+        dot.addEventListener('click', ()=>goToSlide(id,i - 1));
+        dotsWrap.appendChild(dot);
     }
 
+    bindSwipe(id);
     updateSlide(id);
 }
 
-function updateSlide(id){
+function updateSlide(id,direction='none'){
     const slides = document.querySelectorAll(`#${id}-slides .slide`);
+    const dots = document.querySelectorAll(`#${id}-dots .dot`);
 
     slides.forEach((el,index)=>{
         const active = index === currentSlide[id];
+
+        el.classList.remove('active','slide-next','slide-prev');
         el.style.display = active ? 'block' : 'none';
-        el.classList.toggle('active',active);
+
+        if(active){
+            el.classList.add('active');
+
+            if(direction === 'next' || direction === 'prev'){
+                void el.offsetWidth;
+                el.classList.add(direction === 'next' ? 'slide-next' : 'slide-prev');
+            }
+        }
     });
+
+    dots.forEach((dot,index)=>{
+        const active = index === currentSlide[id];
+        dot.classList.toggle('active',active);
+        dot.setAttribute('aria-current',active ? 'true' : 'false');
+    });
+}
+
+function goToSlide(id,index){
+    const total = SLIDE_COUNTS[id] || 0;
+    if(total <= 0 || index < 0 || index >= total || index === currentSlide[id]) return;
+
+    const direction = index > currentSlide[id] ? 'next' : 'prev';
+    currentSlide[id] = index;
+    updateSlide(id,direction);
+    resetTimer();
 }
 
 function nextSlide(id){
@@ -1697,7 +1754,7 @@ function nextSlide(id){
     if(total <= 1) return;
 
     currentSlide[id] = (currentSlide[id] + 1) % total;
-    updateSlide(id);
+    updateSlide(id,'next');
     resetTimer();
 }
 
@@ -1706,8 +1763,55 @@ function prevSlide(id){
     if(total <= 1) return;
 
     currentSlide[id] = (currentSlide[id] - 1 + total) % total;
-    updateSlide(id);
+    updateSlide(id,'prev');
     resetTimer();
+}
+
+function bindSwipe(id){
+    const wrap = document.getElementById(`${id}-slides`);
+    if(!wrap || wrap.dataset.swipeBound === '1') return;
+
+    wrap.dataset.swipeBound = '1';
+
+    let startX = 0;
+    let startY = 0;
+    let pointerId = null;
+
+    wrap.addEventListener('pointerdown',event=>{
+        if(event.pointerType === 'mouse' && event.button !== 0) return;
+
+        pointerId = event.pointerId;
+        startX = event.clientX;
+        startY = event.clientY;
+        wrap.classList.add('swiping');
+
+        try{ wrap.setPointerCapture(pointerId); }catch(e){}
+    });
+
+    wrap.addEventListener('pointerup',event=>{
+        if(pointerId !== event.pointerId) return;
+
+        const deltaX = event.clientX - startX;
+        const deltaY = event.clientY - startY;
+        const threshold = Math.max(45,wrap.clientWidth * 0.08);
+
+        wrap.classList.remove('swiping');
+        try{ wrap.releasePointerCapture(pointerId); }catch(e){}
+        pointerId = null;
+
+        if(Math.abs(deltaX) < threshold || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+
+        if(deltaX < 0){
+            nextSlide(id);
+        }else{
+            prevSlide(id);
+        }
+    });
+
+    wrap.addEventListener('pointercancel',()=>{
+        pointerId = null;
+        wrap.classList.remove('swiping');
+    });
 }
 
 function resetTimer(){
