@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#07111d" stop-opacity="0.985"/>
+      <stop offset="55%" stop-color="#030912" stop-opacity="0.995"/>
+      <stop offset="100%" stop-color="#000307"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b98224"/>
+      <stop offset="30%" stop-color="#f2d17b"/>
+      <stop offset="50%" stop-color="#fff0b0"/>
+      <stop offset="70%" stop-color="#e8bd59"/>
+      <stop offset="100%" stop-color="#a86f19"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-100%" width="140%" height="300%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- La curva se ha subido aproximadamente 100-120 px respecto al diseño anterior -->
+  <path d="M 0 1245 Q 540 1125 1080 1245 L 1080 1920 L 0 1920 Z"
+        fill="url(#panel)"/>
+
+  <path d="M 0 1245 Q 540 1125 1080 1245"
+        fill="none"
+        stroke="url(#gold)"
+        stroke-width="3"
+        filter="url(#glow)"/>
+</svg>

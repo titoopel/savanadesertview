@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" role="img" aria-hidden="true">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="42%" r="68%">
+    <stop offset="0%" stop-color="#1a1408"/>
+    <stop offset="48%" stop-color="#080808"/>
+    <stop offset="100%" stop-color="#000000"/>
+  </radialGradient>
+  <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#FFF3A8"/>
+    <stop offset="22%" stop-color="#FFD95A"/>
+    <stop offset="48%" stop-color="#C98900"/>
+    <stop offset="72%" stop-color="#FFD65A"/>
+    <stop offset="100%" stop-color="#FFF0A0"/>
+  </linearGradient>
+  <linearGradient id="goldText" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#FFF7C0"/>
+    <stop offset="42%" stop-color="#FFD86A"/>
+    <stop offset="100%" stop-color="#B87800"/>
+  </linearGradient>
+  <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+    <feGaussianBlur stdDeviation="4" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="textGlow" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="1.3" result="blur"/>
+    <feFlood flood-color="#D79A12" flood-opacity=".55"/>
+    <feComposite in2="blur" operator="in"/>
+    <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+
+<rect width="240" height="240" fill="#000"/>
+<circle cx="120" cy="120" r="110" fill="url(#bg)" stroke="#8B5A00" stroke-width="2"/>
+<circle cx="120" cy="120" r="105" fill="none" stroke="url(#gold)" stroke-width="2.6"/>
+<circle cx="120" cy="120" r="99" fill="none" stroke="#DCA514" stroke-width="1.2" opacity=".9"/>
+<!-- subtle top glow -->
+<ellipse cx="120" cy="14" rx="14" ry="2.6" fill="#FFD34A" opacity=".55" filter="url(#softGlow)"/>
+<ellipse cx="120" cy="14" rx="5" ry="1.3" fill="#FFF8CB" filter="url(#softGlow)"/>
+<!-- bottom signature glow -->
+<line x1="92" y1="212" x2="148" y2="212" stroke="#D99300" stroke-width="1.2" opacity=".85"/>
+<ellipse cx="120" cy="212" rx="13" ry="2.4" fill="#FFB300" opacity=".7" filter="url(#softGlow)"/>
+<ellipse cx="120" cy="212" rx="4.2" ry="1.4" fill="#FFF4B0" filter="url(#softGlow)"/>
+
+
+<g fill="none" stroke="url(#gold)" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- mountains -->
+  <path d="M126 60 L144 40 L162 60 L176 48 L193 70"/>
+  <path d="M137 48 L145 56 L151 49 M168 56 L176 63 L181 55"/>
+  <!-- hiker -->
+  <circle cx="76" cy="67" r="9"/>
+  <path d="M68 80 L63 107 M86 80 L89 108"/>
+  <path d="M67 85 L80 85 L87 102"/>
+  <path d="M73 109 L63 128 L73 132 L84 114"/>
+  <path d="M87 108 L92 132"/>
+  <path d="M91 131 L102 131"/>
+  <path d="M60 106 L70 108"/>
+  <path d="M89 89 L105 98 L116 96"/>
+  <path d="M112 93 V126"/>
+  <!-- levada path -->
+  <path d="M120 128 C136 116 145 113 156 111 C166 109 165 101 154 100 C142 99 145 88 158 88 C171 88 170 79 183 76"/>
+  <!-- plant -->
+  <path d="M167 128 V106"/>
+  <path d="M167 116 C157 113 156 104 161 99 C169 102 171 108 167 116 Z"/>
+  <path d="M167 111 C177 108 180 99 175 94 C167 97 165 103 167 111 Z"/>
+  <path d="M167 123 C155 123 151 116 154 111 C163 111 168 115 167 123 Z"/>
+  <path d="M167 124 C178 124 183 117 180 112 C171 112 166 116 167 124 Z"/>
+</g>
+
+<text x="120" y="164" text-anchor="middle" fill="url(#goldText)" font-family="Georgia, Times New Roman, serif" font-size="22" font-weight="700" letter-spacing=".4" filter="url(#textGlow)">FAMOUS</text>
+<text x="120" y="190" text-anchor="middle" fill="url(#goldText)" font-family="Georgia, Times New Roman, serif" font-size="22" font-weight="700" letter-spacing=".4" filter="url(#textGlow)">LEVADAS</text>
+</svg>
