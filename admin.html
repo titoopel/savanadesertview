@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <title>Savana Admin</title>
+  <style>
+    :root{
+      --bg:#080808; --panel:#111; --panel2:#171717; --gold:#d6a84b;
+      --gold2:#f1d27a; --text:#fff; --muted:#aaa; --danger:#ff6b6b;
+      --ok:#5bd38c; --line:rgba(214,168,75,.28);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+    body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+    button,input,textarea,select{font:inherit}
+    .wrap{max-width:720px;margin:0 auto;padding:20px}
+    .brand{padding:18px 0 24px;text-align:center}
+    .brand h1{margin:0;color:var(--gold2);font-size:28px;letter-spacing:.08em}
+    .brand p{margin:7px 0 0;color:var(--muted);font-size:14px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:16px;box-shadow:0 12px 32px rgba(0,0,0,.25)}
+    .login{max-width:430px;margin:10vh auto 0}
+    h2{margin:0 0 14px;font-size:20px}
+    label{display:block;color:#ddd;margin:14px 0 7px;font-size:14px}
+    input,textarea,select{
+      width:100%;background:var(--panel2);color:#fff;border:1px solid #333;
+      border-radius:12px;padding:13px 14px;outline:none
+    }
+    input:focus,textarea:focus,select:focus{border-color:var(--gold)}
+    textarea{min-height:110px;resize:vertical}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .btn{
+      width:100%;border:0;border-radius:12px;padding:14px 16px;font-weight:700;
+      cursor:pointer;margin-top:14px
+    }
+    .primary{background:var(--gold);color:#111}
+    .secondary{background:#222;color:#fff;border:1px solid #3b3b3b}
+    .danger{background:#2a1111;color:#ffb0b0;border:1px solid #6e2525}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}
+    .topbar .btn{width:auto;margin:0;padding:10px 14px}
+    .status{font-size:13px;color:var(--muted);margin-top:10px}
+    .ok{color:var(--ok)} .bad{color:var(--danger)}
+    .hidden{display:none!important}
+    .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:5px 9px;color:var(--gold2);font-size:12px}
+    .note{font-size:13px;line-height:1.5;color:#bbb}
+    .preview{background:#0d0d0d;border:1px dashed #444;border-radius:14px;padding:16px;margin-top:14px}
+    .preview strong{color:var(--gold2)}
+    @media(max-width:560px){.row{grid-template-columns:1fr}.wrap{padding:14px}.brand h1{font-size:24px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section id="loginView" class="login">
+      <div class="brand">
+        <h1>SAVANA ADMIN</h1>
+        <p>Private management panel</p>
+      </div>
+      <div class="card">
+        <h2>Enter Admin PIN</h2>
+        <input id="pin" type="password" inputmode="numeric" autocomplete="one-time-code"
+               maxlength="6" placeholder="••••" />
+        <button class="btn primary" id="loginBtn">Unlock panel</button>
+        <div id="loginStatus" class="status"></div>
+      </div>
+    </section>
+
+    <section id="adminView" class="hidden">
+      <div class="brand">
+        <h1>SAVANA ADMIN</h1>
+        <p><span class="pill">TEST MODE</span></p>
+      </div>
+
+      <div class="topbar">
+        <div>
+          <strong>Guest configuration</strong>
+          <div class="status">Savana Desert View Apartment</div>
+        </div>
+        <button class="btn secondary" id="logoutBtn">Lock</button>
+      </div>
+
+      <div class="card">
+        <h2>Guest</h2>
+        <div class="row">
+          <div>
+            <label for="guestName">Guest / group name</label>
+            <input id="guestName" placeholder="e.g. Murisa & Family" />
+          </div>
+          <div>
+            <label for="language">Default language</label>
+            <select id="language">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="pt">Português</option>
+              <option value="fr">Français</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="checkIn">Check-in</label>
+            <input id="checkIn" type="date" />
+          </div>
+          <div>
+            <label for="checkOut">Check-out</label>
+            <input id="checkOut" type="date" />
+          </div>
+        </div>
+
+        <label for="welcome">Welcome message</label>
+        <textarea id="welcome" placeholder="Welcome to Madeira..."></textarea>
+      </div>
+
+      <div class="card">
+        <h2>Contact & display</h2>
+        <label for="contact">Host contact</label>
+        <input id="contact" placeholder="+44 ..." />
+
+        <label for="screenMessage">Short screen message</label>
+        <input id="screenMessage" placeholder="Touch to start" />
+
+        <div class="preview">
+          <div class="status">Preview</div>
+          <p><strong id="pvName">Guest</strong></p>
+          <p id="pvMsg">Welcome message will appear here.</p>
+          <p class="status" id="pvDates"></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Test actions</h2>
+        <button class="btn primary" id="saveLocalBtn">Save test on this iPhone</button>
+        <button class="btn secondary" id="downloadBtn">Export guest.json</button>
+        <button class="btn danger" id="resetBtn">Reset test data</button>
+        <div id="saveStatus" class="status"></div>
+        <p class="note">
+          This first version is deliberately separate from the public website.
+          “Save test” stores data only in this browser. “Export guest.json” creates
+          the configuration file that can later be committed to GitHub.
+        </p>
+      </div>
+    </section>
+  </main>
+
+<script>
+(() => {
+  // TEST ONLY. Client-side PIN is not strong authentication on a static site.
+  const TEST_PIN = "2580";
+  const STORAGE_KEY = "savana_admin_guest_v1";
+  const SESSION_KEY = "savana_admin_unlocked";
+
+  const $ = id => document.getElementById(id);
+  const loginView = $("loginView");
+  const adminView = $("adminView");
+
+  const fields = ["guestName","language","checkIn","checkOut","welcome","contact","screenMessage"];
+
+  function setUnlocked(on){
+    sessionStorage.setItem(SESSION_KEY, on ? "1" : "0");
+    loginView.classList.toggle("hidden", on);
+    adminView.classList.toggle("hidden", !on);
+  }
+
+  function dataFromForm(){
+    return {
+      guestName: $("guestName").value.trim(),
+      language: $("language").value,
+      checkIn: $("checkIn").value,
+      checkOut: $("checkOut").value,
+      welcome: $("welcome").value.trim(),
+      contact: $("contact").value.trim(),
+      screenMessage: $("screenMessage").value.trim(),
+      updatedAt: new Date().toISOString()
+    };
+  }
+
+  function fillForm(d = {}){
+    fields.forEach(k => { if (d[k] !== undefined) $(k).value = d[k]; });
+    updatePreview();
+  }
+
+  function updatePreview(){
+    const d = dataFromForm();
+    $("pvName").textContent = d.guestName || "Guest";
+    $("pvMsg").textContent = d.welcome || "Welcome message will appear here.";
+    $("pvDates").textContent =
+      (d.checkIn || d.checkOut) ? `${d.checkIn || "—"} → ${d.checkOut || "—"}` : "";
+  }
+
+  $("loginBtn").addEventListener("click", () => {
+    if ($("pin").value === TEST_PIN){
+      $("loginStatus").textContent = "";
+      setUnlocked(true);
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+        fillForm(saved);
+      } catch { fillForm({}); }
+    } else {
+      $("loginStatus").textContent = "Incorrect PIN";
+      $("loginStatus").className = "status bad";
+      $("pin").value = "";
+    }
+  });
+
+  $("pin").addEventListener("keydown", e => {
+    if (e.key === "Enter") $("loginBtn").click();
+  });
+
+  $("logoutBtn").addEventListener("click", () => {
+    sessionStorage.removeItem(SESSION_KEY);
+    $("pin").value = "";
+    setUnlocked(false);
+  });
+
+  fields.forEach(k => $(k).addEventListener("input", updatePreview));
+
+  $("saveLocalBtn").addEventListener("click", () => {
+    const d = dataFromForm();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+    $("saveStatus").textContent = "Saved on this device ✓";
+    $("saveStatus").className = "status ok";
+  });
+
+  $("downloadBtn").addEventListener("click", () => {
+    const d = dataFromForm();
+    const blob = new Blob([JSON.stringify(d, null, 2)], {type:"application/json"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "guest.json";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    $("saveStatus").textContent = "guest.json exported ✓";
+    $("saveStatus").className = "status ok";
+  });
+
+  $("resetBtn").addEventListener("click", () => {
+    localStorage.removeItem(STORAGE_KEY);
+    fillForm({
+      guestName:"",
+      language:"en",
+      checkIn:"",
+      checkOut:"",
+      welcome:"",
+      contact:"",
+      screenMessage:"Touch to start"
+    });
+    $("saveStatus").textContent = "Test data reset";
+    $("saveStatus").className = "status";
+  });
+
+  if (sessionStorage.getItem(SESSION_KEY) === "1") {
+    setUnlocked(true);
+    try { fillForm(JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}")); }
+    catch { fillForm({}); }
+  } else {
+    setUnlocked(false);
+  }
+})();
+</script>
+</body>
+</html>
